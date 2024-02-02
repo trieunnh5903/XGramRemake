@@ -1,0 +1,99 @@
+//Common
+export {default as CloseSvg} from './common/CloseSvg';
+export {default as HomeSvg} from './common/HomeSvg';
+export {default as BarsSvg} from './common/BarsSvg';
+export {default as ChevronDownSvg} from './common/ChevronDownSvg';
+export {default as ChevronRightSvg} from './common/ChevronRightSvg';
+export {default as ArrowRightSvg} from './common/ArrowRightSvg';
+export {default as CheckSvg} from './common/CheckSvg';
+export {default as CircleCloseSvg} from './common/CircleCloseSvg';
+export {default as EyeOnSvg} from './common/EyeOnSvg';
+export {default as EyeOffSvg} from './common/EyeOffSvg';
+export {default as CameraSvg} from './common/CameraSvg';
+export {default as PhotoSvg} from './common/PhotoSvg';
+export {default as LinkSvg} from './common/LinkSvg';
+export {default as SmsSvg} from './common/SmsSvg';
+export {default as ShareSvg} from './common/ShareSvg';
+export {default as WeChatSvg} from './common/WeChatSvg';
+export {default as VideoSvg} from './common/VideoSvg';
+export {default as SettingSvg} from './common/SettingSvg';
+export {default as ReelSvg} from './common/ReelSvg';
+export {default as StickerSvg} from './common/StickerSvg';
+export {default as DrawSvg} from './common/DrawSvg';
+export {default as TextSvg} from './common/TextSvg';
+export {default as TrashBinSvg} from './common/TrashBinSvg';
+export {default as SolidTextSvg} from './common/SolidTextSvg';
+export {default as AlignLeftSvg} from './common/AlignLeftSvg';
+export {default as AlignRightSvg} from './common/AlignRightSvg';
+export {default as AlignCenterSvg} from './common/AlignCenterSvg';
+export {default as UploadSvg} from './common/UploadSvg';
+export {default as DotsSvg} from './common/DotsSvg';
+export {default as ProfileSvg} from './common/ProfileSvg';
+export {default as BlockSvg} from './common/BlockSvg';
+export {default as ErrorSvg} from './common/ErrorSvg';
+export {default as FullScreenSvg} from './common/FullScreenSvg';
+export {default as PlusSvg} from './common/PlusSvg';
+export {default as BellOffSvg} from './common/BellOffSvg';
+export {default as NoteSvg} from './common/NoteSvg';
+//Onboarding
+export {default as BallSvg} from './onboarding/BallSvg';
+//Home
+export {default as ExampleSvg} from './home/Example';
+export {default as BellSvg} from './home/BellSvg';
+export {default as MenuSvg} from './home/MenuSvg';
+export {default as CreateStorySvg} from './home/CreateStorySvg';
+export {default as MessageSvg} from './home/MessageSvg';
+export {default as StoryGradientBorderSvg} from './home/StoryGradientBorderSvg';
+export {default as HeartSvg} from './home/HeartSvg';
+export {default as SendSvg} from './home/SendSvg';
+export {default as PlusCircleSvg} from './home/PlusCircleSvg';
+export {default as CommentSvg} from './home/CommentSvg';
+export {default as SearchSvg} from './home/SearchSvg';
+export {default as BookMarkedSvg} from './home/BookMarkedSvg';
+export {default as BookMarkSvg} from './home/BookMarkSvg';
+export {default as CopySvg} from './home/CopySvg';
+export {default as RemoveSvg} from './home/RemoveSvg';
+export {default as ReportSvg} from './home/ReportSvg';
+export {default as StackSvg} from './home/StackSvg';
+export {default as EditSvg} from './home/EditSvg';
+export {default as FollowSvg} from './home/FollowSvg';
+export {default as UnfollowSvg} from './home/UnfollowSvg';
+export {default as GlobalSvg} from './home/GlobalSvg';
+export {default as PeopleSvg} from './home/PeopleSvg';
+//Auth
+export {default as LockSvg} from './auth/LockSvg';
+export {default as FingerPrintSvg} from './auth/FingerPrintSvg';
+export {default as BackSpaceSvg} from './auth/BackSpaceSvg';
+//Profile
+export {default as GridSvg} from './profile/GridSvg';
+export {default as BirthdayCakeSvg} from './profile/BirthdayCakeSvg';
+export {default as ClockSvg} from './profile/ClockSvg';
+export {default as PhoneSvg} from './profile/PhoneSvg';
+export {default as MailSvg} from './profile/MailSvg';
+export {default as GenderSvg} from './profile/GenderSvg';
+//Conversations
+export {default as DoubleCheckSvg} from './conversations/DoubleCheckSvg';
+export {default as InforSvg} from './conversations/InforSvg';
+//Capture
+export {default as FlashOnSvg} from './capture/FlashOnSvg';
+export {default as FlashOffSvg} from './capture/FlashOffSvg';
+export {default as RotateCameraSvg} from './capture/RotateCameraSvg';
+export {default as HdrSvg} from './capture/HdrSvg';
+export {default as RecordSvg} from './capture/RecordSvg';
+export {default as PlaySvg} from './capture/PlaySvg';
+export {default as PauseSvg} from './capture/PauseSvg';
+//Search
+export {default as ArchitectureSvg} from './search/ArchitectureSvg';
+export {default as ArtSvg} from './search/ArtSvg';
+export {default as FashionSvg} from './search/FashionSvg';
+export {default as FoodSvg} from './search/FoodSvg';
+export {default as HammerSvg} from './search/HammerSvg';
+export {default as LandscapeSvg} from './search/LandscapeSvg';
+export {default as MaskSvg} from './search/MaskSvg';
+export {default as MultipleSvg} from './search/MultipleSvg';
+//Setting
+export {default as LogoutSvg} from './setting/LogoutSvg';
+export {default as UserSvg} from './setting/UserSvg';
+export {default as LanguageSvg} from './setting/LanguageSvg';
+export {default as PaperSvg} from './setting/PaperSvg';
+export {default as InfoCircleSvg} from './setting/InfoCircleSvg';

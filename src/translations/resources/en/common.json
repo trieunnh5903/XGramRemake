@@ -1,0 +1,11 @@
+{
+  "app_name": "XGram",
+  "login": "Login",
+  "register": "Register",
+  "videos": "Videos",
+  "photos": "Photos",
+  "reels": "Reels",
+  "select": "Select",
+  "choose_language": "Choose Language",
+  "skip": "Skip"
+}
