@@ -17,9 +17,9 @@ type TypeStyle =
   | 'headline-small';
 
 interface AppTextProps {
-  typeStyle: TypeStyle;
+  typeStyle?: TypeStyle;
   children: React.ReactNode;
-  style: StyleProp<TextStyle>;
+  style?: StyleProp<TextStyle>;
 }
 const AppText: React.FC<AppTextProps> = ({typeStyle, children, style}) => {
   const appTheme = useAppTheme();

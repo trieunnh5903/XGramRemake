@@ -1,10 +1,11 @@
-import en from './resources/en';
+import vi from './resources/vi';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
     resources: {
-      common: typeof en.common;
-      language: typeof en.languages;
+      common: typeof vi.common;
+      language: typeof vi.languages;
+      on_boarding: typeof vi.on_boarding;
     };
   }
 }
