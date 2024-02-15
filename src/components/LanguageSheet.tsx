@@ -11,10 +11,12 @@ import {useTranslation} from 'react-i18next';
 import {colors} from '@/theme/colors';
 import {CheckSvg} from '@/assets/svg';
 import {Language} from '@/types/language';
+import useTheme from '@/hooks/useTheme';
 
 const LanguageSheet = () => {
   const sheetRef = useRef<BottomSheet>(null);
   const {t} = useTranslation('on_boarding');
+  const {layout} = useTheme();
   useEffect(() => {
     const disposer = autorun(() => {
       if (appStore.showLanguageSheet) {
@@ -26,15 +28,17 @@ const LanguageSheet = () => {
     return () => disposer();
   }, []);
 
+  const handleLanguagePress = (item: Language) => {
+    appStore.setLanguageCode(item?.code);
+    appStore.setShowLanguageSheet(false);
+  };
+
   const renderLangItem = ({item}: {item: Language}) => {
     return (
       <TouchableOpacity
-        onPress={() => {
-          //   appStore.setLanguage(item?.code);
-          //   appStore.setShowLanguageSheet(false);
-        }}
+        onPress={() => handleLanguagePress(item)}
         style={styles.langItem}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={layout.row}>
           <Image source={item.flag} style={styles.flag} />
           <AppText typeStyle="title-small" style={{color: colors.black}}>
             {item.name}
@@ -49,7 +53,7 @@ const LanguageSheet = () => {
   };
   return (
     <AppBottomSheet ref={sheetRef} snapPoints={['25%']}>
-      <View style={{padding: 10, flex: 1, paddingTop: 0}}>
+      <View style={[layout.flex_1, {padding: 10, paddingTop: 0}]}>
         <AppText style={{color: colors.black}} typeStyle="title-medium">
           {t('choose_language')}
         </AppText>

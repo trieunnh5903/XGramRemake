@@ -15,19 +15,20 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import {useTranslation} from 'react-i18next';
-import {GlobalStyle} from '@/config';
-import {LanguageSheet, AppText, Container} from '@/components';
+import {AppText, Container} from '@/components';
 import {ArrowRightSvg, BallSvg, ChevronRightSvg} from '@/assets/svg';
 import {colors} from '@/theme/colors';
 import {Images} from '@/assets/images';
 import {screenWidth} from '@/theme/size';
 import {useLocalObservable} from 'mobx-react-lite';
 import {appStore} from '@/stores';
+import useTheme from '@/hooks/useTheme';
 
-const OnBoardingScreen = ({navigate}) => {
+const OnBoardingScreen = () => {
   const {t} = useTranslation('on_boarding');
   const scrollX = useSharedValue(0);
   const flatlistRef = useRef();
+  const {layout} = useTheme();
 
   const state = useLocalObservable(() => ({
     currentPage: 0,
@@ -98,7 +99,7 @@ const OnBoardingScreen = ({navigate}) => {
   });
   return (
     <Container statusBarProps={{barStyle: 'light-content'}} edgeTop={false}>
-      <Animated.View style={[GlobalStyle.flex, backgroundColorAnimatedStyle]}>
+      <Animated.View style={[layout.flex_1, backgroundColorAnimatedStyle]}>
         {/* header */}
         <View style={styles.headerView}>
           <TouchableOpacity
@@ -112,7 +113,7 @@ const OnBoardingScreen = ({navigate}) => {
           </TouchableOpacity>
         </View>
 
-        <View style={GlobalStyle.flex}>
+        <View style={layout.flex_1}>
           {/* list */}
           <Animated.FlatList
             onMomentumScrollEnd={({
@@ -140,7 +141,7 @@ const OnBoardingScreen = ({navigate}) => {
           <View style={styles.pageIndicatorView}>
             {data.map(renderPageDotItem)}
           </View>
-          <View style={GlobalStyle.itemCenter}>
+          <View style={[layout.justifyCenter, layout.itemsCenter]}>
             <TouchableOpacity
               onPress={handleNextPress}
               style={styles.nextBtn}
@@ -180,6 +181,7 @@ const PageDot = memo(({scrollX, index}) => {
 });
 
 const PageItem = memo(({data, scrollX, index}) => {
+  const {layout} = useTheme();
   const inputRange = [
     (index - 1) * screenWidth,
     index * screenWidth,
@@ -265,7 +267,7 @@ const PageItem = memo(({data, scrollX, index}) => {
   }));
   return (
     <Animated.View style={[styles.pageItem]}>
-      <View style={[GlobalStyle.itemCenter]}>
+      <View style={[layout.itemsCenter, layout.justifyCenter]}>
         <Animated.View style={ballStyle}>
           <BallSvg size={300} />
         </Animated.View>

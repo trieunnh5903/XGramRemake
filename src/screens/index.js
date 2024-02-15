@@ -1,1 +1,1 @@
-export {default as OnBoardingScreen} from './on_boarding/index';
+export {default as OnBoardingScreen} from './on_boarding';

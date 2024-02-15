@@ -8,7 +8,7 @@ import {
 import React, {memo, useMemo} from 'react';
 import {Edges, SafeAreaView} from 'react-native-safe-area-context';
 import Animated, {FadeIn} from 'react-native-reanimated';
-import {GlobalStyle} from '../config';
+import useTheme from '@/hooks/useTheme';
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -28,6 +28,7 @@ const Container: React.FC<ContainerProps> = ({
   style,
   useFading = false,
 }) => {
+  const {layout} = useTheme();
   const edges = useMemo(() => {
     let edgeArr = ['left', 'right'];
     if (edgeBottom) {
@@ -41,17 +42,17 @@ const Container: React.FC<ContainerProps> = ({
     return edgeArr as Edges;
   }, [edgeBottom, edgeTop]);
   return (
-    <SafeAreaView style={[GlobalStyle.flex, safeAreaStyle]} edges={edges}>
+    <SafeAreaView style={[layout.flex_1, safeAreaStyle]} edges={edges}>
       <Animated.View
         entering={useFading ? FadeIn : undefined}
-        style={[GlobalStyle.flex]}>
+        style={[layout.flex_1]}>
         <StatusBar
           translucent
           backgroundColor="transparent"
           barStyle="dark-content"
           {...statusBarProps}
         />
-        <View style={[GlobalStyle.flex, style]}>{children}</View>
+        <View style={[layout.flex_1, style]}>{children}</View>
       </Animated.View>
     </SafeAreaView>
   );

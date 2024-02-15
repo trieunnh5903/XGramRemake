@@ -1,14 +1,18 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {MainNavigation} from './src/navigators';
+import {MainNavigation} from './navigators';
 import {LanguageSheet} from '@/components';
+import ThemeProvider from './theme/ThemeProvider';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const App = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaProvider>
-        <MainNavigation />
+        <ThemeProvider>
+          <MainNavigation />
+        </ThemeProvider>
         <LanguageSheet />
       </SafeAreaProvider>
     </GestureHandlerRootView>
