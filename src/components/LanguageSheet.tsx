@@ -10,6 +10,7 @@ import {appStore} from '@/stores';
 import {useTranslation} from 'react-i18next';
 import {colors} from '@/theme/colors';
 import {CheckSvg} from '@/assets/svg';
+import {Language} from '@/types/language';
 
 const LanguageSheet = () => {
   const sheetRef = useRef<BottomSheet>(null);
@@ -25,7 +26,7 @@ const LanguageSheet = () => {
     return () => disposer();
   }, []);
 
-  const renderLangItem = ({item}) => {
+  const renderLangItem = ({item}: {item: Language}) => {
     return (
       <TouchableOpacity
         onPress={() => {

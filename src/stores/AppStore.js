@@ -1,7 +1,6 @@
 import {Images} from '@/assets/images';
 import i18n from '@/translations/i18n';
 import {makeAutoObservable} from 'mobx';
-
 export default class AppStore {
   languages = [
     {

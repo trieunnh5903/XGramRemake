@@ -1,4 +1,4 @@
-import vi from './resources/vi';
+import vi from '../translations/resources/vi';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
