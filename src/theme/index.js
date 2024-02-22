@@ -1,4 +1,4 @@
-import {DarkColors, LightColors, colors} from './colors';
+import { DarkColors, LightColors, colors } from './colors';
 export default {
   DarkColors,
   LightColors,

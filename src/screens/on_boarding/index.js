@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {memo, useMemo, useRef} from 'react';
+import React, { memo, useMemo, useRef } from 'react';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -14,21 +14,21 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from 'react-native-reanimated';
-import {useTranslation} from 'react-i18next';
-import {AppText, Container} from '@/components';
-import {ArrowRightSvg, BallSvg, ChevronRightSvg} from '@/assets/svg';
-import {colors} from '@/theme/colors';
-import {Images} from '@/assets/images';
-import {screenWidth} from '@/theme/size';
-import {useLocalObservable} from 'mobx-react-lite';
-import {appStore} from '@/stores';
+import { useTranslation } from 'react-i18next';
+import { AppText, Container } from '@/components';
+import { ArrowRightSvg, BallSvg, ChevronRightSvg } from '@/assets/svg';
+import { colors } from '@/theme/colors';
+import { Images } from '@/assets/images';
+import { screenWidth } from '@/theme/size';
+import { useLocalObservable } from 'mobx-react-lite';
+import { appStore } from '@/stores';
 import useTheme from '@/hooks/useTheme';
 
 const OnBoardingScreen = () => {
-  const {t} = useTranslation('on_boarding');
+  const { t } = useTranslation('on_boarding');
   const scrollX = useSharedValue(0);
   const flatlistRef = useRef();
-  const {layout} = useTheme();
+  const { layout } = useTheme();
 
   const state = useLocalObservable(() => ({
     currentPage: 0,
@@ -39,7 +39,7 @@ const OnBoardingScreen = () => {
     if (state.currentPage === 2) {
       return;
     }
-    flatlistRef.current?.scrollToIndex({index: state.currentPage + 1});
+    flatlistRef.current?.scrollToIndex({ index: state.currentPage + 1 });
     state.setCurrentPage(state.currentPage + 1);
   };
 
@@ -79,7 +79,7 @@ const OnBoardingScreen = () => {
   );
 
   const scrollHandler = useAnimatedScrollHandler({
-    onScroll: ({contentOffset: {x}}) => {
+    onScroll: ({ contentOffset: { x } }) => {
       scrollX.value = x;
     },
   });
@@ -98,7 +98,7 @@ const OnBoardingScreen = () => {
     };
   });
   return (
-    <Container statusBarProps={{barStyle: 'light-content'}} edgeTop={false}>
+    <Container statusBarProps={{ barStyle: 'light-content' }} edgeTop={false}>
       <Animated.View style={[layout.flex_1, backgroundColorAnimatedStyle]}>
         {/* header */}
         <View style={styles.headerView}>
@@ -118,13 +118,13 @@ const OnBoardingScreen = () => {
           <Animated.FlatList
             onMomentumScrollEnd={({
               nativeEvent: {
-                contentOffset: {x},
+                contentOffset: { x },
               },
             }) => state.setCurrentPage(Math.round(x / screenWidth))}
             ref={flatlistRef}
             overScrollMode={'never'}
             data={data}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return <PageItem data={item} index={index} scrollX={scrollX} />;
             }}
             onScroll={scrollHandler}
@@ -157,7 +157,7 @@ const OnBoardingScreen = () => {
 
 export default OnBoardingScreen;
 
-const PageDot = memo(({scrollX, index}) => {
+const PageDot = memo(({ scrollX, index }) => {
   const inputRange = [
     screenWidth * (index - 1),
     screenWidth * index,
@@ -180,8 +180,8 @@ const PageDot = memo(({scrollX, index}) => {
   return <Animated.View style={[styles.pageDot, dotStyle]} />;
 });
 
-const PageItem = memo(({data, scrollX, index}) => {
-  const {layout} = useTheme();
+const PageItem = memo(({ data, scrollX, index }) => {
+  const { layout } = useTheme();
   const inputRange = [
     (index - 1) * screenWidth,
     index * screenWidth,
@@ -275,16 +275,28 @@ const PageItem = memo(({data, scrollX, index}) => {
           {data.title}
         </AppText>
         <Animated.View style={[styles.bubbleItem, bubble1Position]}>
-          <Image source={data.shapes[0]} style={{transform: [{scale: 0.5}]}} />
+          <Image
+            source={data.shapes[0]}
+            style={{ transform: [{ scale: 0.5 }] }}
+          />
         </Animated.View>
         <Animated.View style={[styles.bubbleItem, bubble2Position]}>
-          <Image source={data.shapes[1]} style={{transform: [{scale: 0.5}]}} />
+          <Image
+            source={data.shapes[1]}
+            style={{ transform: [{ scale: 0.5 }] }}
+          />
         </Animated.View>
         <Animated.View style={[styles.bubbleItem, bubble3Position]}>
-          <Image source={data.shapes[2]} style={{transform: [{scale: 0.5}]}} />
+          <Image
+            source={data.shapes[2]}
+            style={{ transform: [{ scale: 0.5 }] }}
+          />
         </Animated.View>
         <Animated.View style={[styles.bubbleItem, bubble4Position]}>
-          <Image source={data.shapes[3]} style={{transform: [{scale: 0.5}]}} />
+          <Image
+            source={data.shapes[3]}
+            style={{ transform: [{ scale: 0.5 }] }}
+          />
         </Animated.View>
       </View>
 

@@ -1,17 +1,13 @@
-import { moderateScale } from '@/Theme'
-import * as React from 'react'
-import Svg, { Path, Defs, LinearGradient, Stop } from 'react-native-svg'
+import * as React from 'react';
+import Svg, { Path, Defs, LinearGradient, Stop } from 'react-native-svg';
 
 const SvgComponent = ({ size = 365 }) => (
   <Svg
-    width={size
-}
-    height={size
-}
+    width={size}
+    height={size}
     viewBox="0 0 358 365"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+    xmlns="http://www.w3.org/2000/svg">
     <Path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -31,8 +27,7 @@ const SvgComponent = ({ size = 365 }) => (
         y1={-9.518}
         x2={179.551}
         y2={204.498}
-        gradientUnits="userSpaceOnUse"
-      >
+        gradientUnits="userSpaceOnUse">
         <Stop stopColor="#fff" />
         <Stop offset={1} stopColor="#fff" stopOpacity={0} />
       </LinearGradient>
@@ -42,13 +37,12 @@ const SvgComponent = ({ size = 365 }) => (
         y1={395.281}
         x2={179.211}
         y2={160.143}
-        gradientUnits="userSpaceOnUse"
-      >
+        gradientUnits="userSpaceOnUse">
         <Stop stopColor="#fff" />
         <Stop offset={1} stopColor="#fff" stopOpacity={0} />
       </LinearGradient>
     </Defs>
   </Svg>
-)
+);
 
-export default SvgComponent
+export default SvgComponent;
