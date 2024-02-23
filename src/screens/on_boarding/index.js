@@ -10,6 +10,7 @@ import Animated, {
   Extrapolation,
   interpolate,
   interpolateColor,
+  useAnimatedProps,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
@@ -23,7 +24,9 @@ import { screenWidth } from '@/theme/size';
 import { useLocalObservable } from 'mobx-react-lite';
 import { appStore } from '@/stores';
 import useTheme from '@/hooks/useTheme';
+import { Circle, Defs, LinearGradient, Stop, Svg } from 'react-native-svg';
 
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const OnBoardingScreen = () => {
   const { t } = useTranslation('on_boarding');
   const scrollX = useSharedValue(0);
@@ -97,6 +100,15 @@ const OnBoardingScreen = () => {
       ),
     };
   });
+
+  const animatedProps = useAnimatedProps(() => ({
+    strokeDashoffset: interpolate(
+      scrollX.value,
+      [0, screenWidth, screenWidth * 2],
+      [2 * Math.PI * 46 * 0.66, 2 * Math.PI * 46 * 0.33, 0],
+    ),
+  }));
+
   return (
     <Container statusBarProps={{ barStyle: 'light-content' }} edgeTop={false}>
       <Animated.View style={[layout.flex_1, backgroundColorAnimatedStyle]}>
@@ -141,13 +153,42 @@ const OnBoardingScreen = () => {
           <View style={styles.pageIndicatorView}>
             {data.map(renderPageDotItem)}
           </View>
-          <View style={[layout.justifyCenter, layout.itemsCenter]}>
-            <TouchableOpacity
-              onPress={handleNextPress}
-              style={styles.nextBtn}
-              activeOpacity={0.8}>
-              <ArrowRightSvg color={colors.white90} />
-            </TouchableOpacity>
+          <View style={(layout.justifyCenter, layout.itemsCenter)}>
+            <View
+              style={[
+                { height: 100, width: 100 },
+                layout.justifyCenter,
+                layout.itemsCenter,
+              ]}>
+              <Svg
+                style={{
+                  transform: [{ rotate: '-90deg' }],
+                }}>
+                <Defs>
+                  <LinearGradient id="circle" x1={0} y1={1} x2={0} y2={0}>
+                    <Stop offset={'0%'} stopColor={'#FF7A51'} />
+                    <Stop offset={'100%'} stopColor={'#FFDB5C'} />
+                  </LinearGradient>
+                </Defs>
+                <AnimatedCircle
+                  cx={50}
+                  cy={50}
+                  r={46}
+                  strokeWidth={2}
+                  fill={'transparent'}
+                  stroke={'url(#circle)'}
+                  strokeDasharray={[2 * Math.PI * 46]}
+                  animatedProps={animatedProps}
+                  strokeLinecap="round"
+                />
+              </Svg>
+              <TouchableOpacity
+                onPress={handleNextPress}
+                style={styles.nextBtn}
+                activeOpacity={0.8}>
+                <ArrowRightSvg color={colors.white90} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Animated.View>
@@ -313,7 +354,7 @@ const PageItem = memo(({ data, scrollX, index }) => {
 
 const styles = StyleSheet.create({
   footerView: {
-    paddingBottom: 30,
+    paddingBottom: 20,
   },
   pageDot: {
     width: 32,
@@ -323,6 +364,7 @@ const styles = StyleSheet.create({
   },
 
   nextBtn: {
+    position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 99,

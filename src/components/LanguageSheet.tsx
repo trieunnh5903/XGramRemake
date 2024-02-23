@@ -52,7 +52,7 @@ const LanguageSheet = () => {
     );
   };
   return (
-    <AppBottomSheet ref={sheetRef} snapPoints={['25%']}>
+    <AppBottomSheet ref={sheetRef} snapPoints={['30%']}>
       <View style={[layout.flex_1, { padding: 10, paddingTop: 0 }]}>
         <AppText style={{ color: colors.black }} typeStyle="title-medium">
           {t('choose_language')}

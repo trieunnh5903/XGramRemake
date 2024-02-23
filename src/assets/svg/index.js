@@ -3,6 +3,7 @@ export { default as CloseSvg } from './common/CloseSvg';
 export { default as HomeSvg } from './common/HomeSvg';
 export { default as BarsSvg } from './common/BarsSvg';
 export { default as ChevronDownSvg } from './common/ChevronDownSvg';
+export { default as ChevronRightShortSvg } from './common/arrow-right-short.svg';
 export { default as ChevronRightSvg } from './common/ChevronRightSvg';
 export { default as ArrowRightSvg } from './common/ArrowRightSvg';
 export { default as CheckSvg } from './common/CheckSvg';
