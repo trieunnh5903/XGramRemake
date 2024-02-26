@@ -1,5 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  NativeModules,
+} from 'react-native';
 import React, { useCallback } from 'react';
 import {
   AppButton,
@@ -31,6 +38,8 @@ import Animated, {
 import { validateEmail, validatePassword } from '@/utils/validator';
 import { navigate } from '@/navigators/NavigationUtils';
 import { Images } from '@/assets/images';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import DeviceInfo from 'react-native-device-info';
 
 const LoginScreen = () => {
   const { t } = useTranslation('login');
@@ -69,22 +78,23 @@ const LoginScreen = () => {
   }, []);
 
   const onLoginWithGooglePress = useCallback(async () => {
-    // try {
-    //   if (isAndroid) {
-    //     GoogleSignin.configure({
-    //       scopes: ['profile', 'email'],
-    //     });
-    //   }
-    //   const response = await GoogleSignin.signIn();
-    //   const token = await GoogleSignin.getTokens();
-    //   const user = {
-    //     ...response.user,
-    //     token: token.accessToken,
-    //   };
-    //   console.log(user);
-    // } catch (e) {
-    //   console.log(JSON.stringify(e));
-    // }
+    try {
+      if ((Platform.OS = 'android')) {
+        GoogleSignin.configure({
+          scopes: ['profile', 'email'],
+        });
+      }
+      await GoogleSignin.hasPlayServices();
+      const response = await GoogleSignin.signIn();
+      const token = await GoogleSignin.getTokens();
+      const user = {
+        ...response.user,
+        token: token.accessToken,
+      };
+      console.log(user);
+    } catch (e) {
+      console.log(JSON.stringify(e));
+    }
   }, []);
 
   return (
