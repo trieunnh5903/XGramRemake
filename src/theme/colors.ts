@@ -104,7 +104,7 @@ export const DarkColors = {
   typography: '#fff',
 };
 
-export const colors = {
+export const Colors = {
   primary: '#0084ff',
   primaryLight: '#4da1ff',
   primary50: '#0084ff50',

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
 import {memo} from 'react';
-import {colors} from '@/theme/colors';
+import {Colors} from '@/theme/colors';
 
 const SvgComponent = ({size = 24, color = colors.black
 }) => (

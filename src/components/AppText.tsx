@@ -1,6 +1,6 @@
-import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
-import React, {memo} from 'react';
-import {useAppTheme} from '@/hooks';
+import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
+import React, { PropsWithChildren, memo } from 'react';
+import { Colors } from '@/theme/colors';
 
 type TypeStyle =
   | 'label-large'
@@ -16,100 +16,77 @@ type TypeStyle =
   | 'headline-medium'
   | 'headline-small';
 
-interface AppTextProps {
+export interface AppTextProps extends PropsWithChildren {
   typeStyle?: TypeStyle;
-  children: React.ReactNode;
   style?: StyleProp<TextStyle>;
+  color?: string;
+  bold?: boolean;
 }
-const AppText: React.FC<AppTextProps> = ({typeStyle, children, style}) => {
-  const appTheme = useAppTheme();
+const AppText: React.FC<AppTextProps> = ({
+  typeStyle,
+  children,
+  color = Colors.white90,
+  bold,
+  style,
+}) => {
+  let labelStyle = {};
   switch (typeStyle) {
     case 'label-large':
-      return (
-        <Text style={[styles.labelLarge, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.labelLarge;
+      break;
     case 'label-medium':
-      return (
-        <Text style={[styles.labelMedium, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.labelMedium;
+
+      break;
 
     case 'label-small':
-      return (
-        <Text style={[styles.labelSmall, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.labelSmall;
+      break;
 
     case 'body-large':
-      return (
-        <Text style={[styles.bodyLarge, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.bodyLarge;
+      break;
 
     case 'body-medium':
-      return (
-        <Text style={[styles.bodyMedium, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.bodyMedium;
+      break;
 
     case 'body-small':
-      return (
-        <Text style={[styles.bodySmall, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.bodySmall;
+      break;
 
     case 'title-large':
-      return (
-        <Text style={[styles.titleLarge, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
-
+      labelStyle = styles.titleLarge;
+      break;
     case 'title-medium':
-      return (
-        <Text style={[styles.titleMedium, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.titleMedium;
+      break;
 
     case 'title-small':
-      return (
-        <Text style={[styles.titleSmall, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.titleSmall;
+      break;
 
     case 'headline-large':
-      return (
-        <Text style={[styles.headlineLarge, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.headlineLarge;
+      break;
 
     case 'headline-medium':
-      return (
-        <Text style={[styles.headlineMedium, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
+      labelStyle = styles.headlineMedium;
+      break;
 
     case 'headline-small':
-      return (
-        <Text style={[styles.headlineSmall, {color: appTheme.white90}, style]}>
-          {children}
-        </Text>
-      );
-
-    default:
-      return <Text style={style}>{children}</Text>;
+      labelStyle = styles.headlineSmall;
+      break;
   }
+  return (
+    <Text
+      style={[
+        { color: color, fontWeight: bold ? 'bold' : 'normal', ...labelStyle },
+        style,
+      ]}>
+      {children}
+    </Text>
+  );
 };
 
 export default memo(AppText);

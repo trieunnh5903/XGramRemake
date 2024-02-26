@@ -5,9 +5,9 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import React, {memo, useMemo} from 'react';
-import {Edges, SafeAreaView} from 'react-native-safe-area-context';
-import Animated, {FadeIn} from 'react-native-reanimated';
+import React, { memo, useMemo } from 'react';
+import { Edges, SafeAreaView } from 'react-native-safe-area-context';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import useTheme from '@/hooks/useTheme';
 
 interface ContainerProps {
@@ -28,7 +28,7 @@ const Container: React.FC<ContainerProps> = ({
   style,
   useFading = false,
 }) => {
-  const {layout} = useTheme();
+  const { layout } = useTheme();
   const edges = useMemo(() => {
     let edgeArr = ['left', 'right'];
     if (edgeBottom) {

@@ -1,6 +1,6 @@
-import {Images} from '@/assets/images';
+import { Images } from '@/assets/images';
 import i18n from '@/translations/i18n';
-import {makeAutoObservable} from 'mobx';
+import { makeAutoObservable } from 'mobx';
 export default class AppStore {
   languages = [
     {
@@ -34,6 +34,6 @@ export default class AppStore {
   }
 
   get currentLanguage() {
-    return this.languages.filter(lang => lang.isSelected === true);
+    return this.languages.find(lang => lang.isSelected === true);
   }
 }

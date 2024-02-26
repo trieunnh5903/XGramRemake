@@ -1,16 +1,13 @@
-import {colors} from '@/theme/colors';
+import { Colors } from '@/theme/colors';
 
 import * as React from 'react';
-import Svg, {Path, Rect} from 'react-native-svg';
+import Svg, { Path, Rect } from 'react-native-svg';
 /* SVGR has dropped some elements not supported by react-native-svg: title */
 
-const SvgComponent = ({size = 24, color = colors.black
-}) => (
+const SvgComponent = ({ size = 24, color = colors.black }) => (
   <Svg
-    width={size
-}
-    height={size
-}
+    width={size}
+    height={size}
     viewBox="0 0 36 36"
     xmlns="http://www.w3.org/2000/svg">
     <Path

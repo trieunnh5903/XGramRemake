@@ -16,6 +16,11 @@ export default StyleSheet.create({
   rowReverse: {
     flexDirection: 'row-reverse',
   },
+
+  selfEnd: {
+    alignSelf: 'flex-end',
+  },
+
   itemsCenter: {
     alignItems: 'center',
   },

@@ -18,21 +18,20 @@ import Animated, {
 import { useTranslation } from 'react-i18next';
 import { AppText, Container } from '@/components';
 import { ArrowRightSvg, BallSvg, ChevronRightSvg } from '@/assets/svg';
-import { colors } from '@/theme/colors';
 import { Images } from '@/assets/images';
 import { screenWidth } from '@/theme/size';
 import { useLocalObservable } from 'mobx-react-lite';
 import { appStore } from '@/stores';
-import useTheme from '@/hooks/useTheme';
 import { Circle, Defs, LinearGradient, Stop, Svg } from 'react-native-svg';
+import { useTheme } from '@/hooks';
+import { navigateAndReset } from '@/navigators/NavigationUtils';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const OnBoardingScreen = () => {
   const { t } = useTranslation('on_boarding');
   const scrollX = useSharedValue(0);
   const flatlistRef = useRef();
-  const { layout } = useTheme();
-
+  const { colors, layout } = useTheme();
   const state = useLocalObservable(() => ({
     currentPage: 0,
     setCurrentPage: index => (state.currentPage = index),
@@ -40,6 +39,7 @@ const OnBoardingScreen = () => {
 
   const handleNextPress = () => {
     if (state.currentPage === 2) {
+      navigateAndReset(['Auth']);
       return;
     }
     flatlistRef.current?.scrollToIndex({ index: state.currentPage + 1 });
@@ -166,8 +166,8 @@ const OnBoardingScreen = () => {
                 }}>
                 <Defs>
                   <LinearGradient id="circle" x1={0} y1={1} x2={0} y2={0}>
-                    <Stop offset={'0%'} stopColor={'#FF7A51'} />
-                    <Stop offset={'100%'} stopColor={'#FFDB5C'} />
+                    <Stop offset={'0%'} stopColor={colors.kFF7A51} />
+                    <Stop offset={'100%'} stopColor={colors.kFFDB5C} />
                   </LinearGradient>
                 </Defs>
                 <AnimatedCircle
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
   },
   pageDot: {
     width: 32,
-    backgroundColor: colors.white,
+    backgroundColor: 'white',
     borderRadius: 6,
     height: 6,
   },
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 99,
-    backgroundColor: colors.k222222,
+    backgroundColor: '#222222',
     height: 62,
     width: 62,
   },

@@ -8,10 +8,10 @@ import BottomSheet, {
 import { autorun } from 'mobx';
 import { appStore } from '@/stores';
 import { useTranslation } from 'react-i18next';
-import { colors } from '@/theme/colors';
 import { CheckSvg } from '@/assets/svg';
 import { Language } from '@/types/language';
 import useTheme from '@/hooks/useTheme';
+import { Colors } from '@/theme/colors';
 
 const LanguageSheet = () => {
   const sheetRef = useRef<BottomSheet>(null);
@@ -40,13 +40,13 @@ const LanguageSheet = () => {
         style={styles.langItem}>
         <View style={layout.row}>
           <Image source={item.flag} style={styles.flag} />
-          <AppText typeStyle="title-small" style={{ color: colors.black }}>
+          <AppText typeStyle="title-small" style={{ color: Colors.black }}>
             {item.name}
           </AppText>
         </View>
         <CheckSvg
           size={16}
-          color={item.isSelected ? colors.k5BB318 : colors.gray}
+          color={item.isSelected ? Colors.k5BB318 : Colors.gray}
         />
       </TouchableOpacity>
     );
@@ -54,7 +54,7 @@ const LanguageSheet = () => {
   return (
     <AppBottomSheet ref={sheetRef} snapPoints={['30%']}>
       <View style={[layout.flex_1, { padding: 10, paddingTop: 0 }]}>
-        <AppText style={{ color: colors.black }} typeStyle="title-medium">
+        <AppText style={styles.chooseLanguageText} typeStyle="title-medium">
           {t('choose_language')}
         </AppText>
         <BottomSheetFlatList
@@ -70,13 +70,14 @@ const LanguageSheet = () => {
 export default memo(LanguageSheet);
 
 const styles = StyleSheet.create({
+  chooseLanguageText: { color: Colors.black, marginBottom: 6 },
   langItem: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 12,
-    borderBottomColor: colors.border,
+    borderBottomColor: Colors.border,
     borderBottomWidth: 0.8,
   },
   flag: {

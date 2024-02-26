@@ -1,4 +1,4 @@
-import {colors} from '@/theme/colors';
+import {Colors} from '@/theme/colors';
 import * as React from 'react';
 import Svg, {G, Path} from 'react-native-svg';
 
