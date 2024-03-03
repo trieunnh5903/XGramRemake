@@ -10,6 +10,7 @@ export type RootStackParamList = {
 export type AuthStackParamList = {
   Login: undefined;
   RecoveryPassword: undefined;
+  Register: undefined;
 };
 
 declare global {

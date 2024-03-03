@@ -5,6 +5,7 @@ import {
   LoginScreen,
   OnBoardingScreen,
   RecoveryPasswordScreen,
+  RegisterScreen,
 } from '@/screens';
 import { RootStackParamList, AuthStackParamList } from '@/types/navigation';
 import { navigationRef } from './NavigationUtils';
@@ -33,7 +34,7 @@ const MainNavigation = () => {
 
 const AuthNavigation = () => {
   return (
-    <Stack.Navigator
+    <AuthStack.Navigator
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_right',
@@ -44,13 +45,12 @@ const AuthNavigation = () => {
         name={'RecoveryPassword'}
         component={RecoveryPasswordScreen}
       />
-      {/* <Stack.Screen name={PageName.RegisterScreen} component={RegisterScreen} />
-      <Stack.Screen
+      <AuthStack.Screen name={'Register'} component={RegisterScreen} />
+      {/* <Stack.Screen
         name={PageName.AuthPassCodeScreen}
         component={AuthPassCodeScreen}
-      />
-     */}
-    </Stack.Navigator>
+      /> */}
+    </AuthStack.Navigator>
   );
 };
 

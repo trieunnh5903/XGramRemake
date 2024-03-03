@@ -7,6 +7,7 @@ declare module 'i18next' {
       language: typeof en.languages;
       on_boarding: typeof en.on_boarding;
       login: typeof en.login;
+      register: typeof en.register;
     };
   }
 }

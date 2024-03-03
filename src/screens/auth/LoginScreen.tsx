@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  NativeModules,
 } from 'react-native';
 import React, { useCallback } from 'react';
 import {
@@ -39,14 +38,13 @@ import { validateEmail, validatePassword } from '@/utils/validator';
 import { navigate } from '@/navigators/NavigationUtils';
 import { Images } from '@/assets/images';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import DeviceInfo from 'react-native-device-info';
 
 const LoginScreen = () => {
   const { t } = useTranslation('login');
   const states = useLocalObservable(() => ({
     showPassword: false,
-    password: '',
-    email: '',
+    password: 'trieunnh@gmail.com',
+    email: 'trieunnh@gmail.com',
     saveLogin: true,
     errorPassword: '',
     errorEmail: '',
@@ -97,6 +95,9 @@ const LoginScreen = () => {
     }
   }, []);
 
+  const onRegisterPress = () => {
+    navigate('Register');
+  };
   return (
     <Container
       style={styles.container}
@@ -281,7 +282,7 @@ const LoginScreen = () => {
             <AppText typeStyle="label-large" color={Colors.placeholder}>
               {t('dont_have_account')}
             </AppText>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onRegisterPress}>
               <AppText typeStyle="label-large" bold color={Colors.primary}>
                 {' '}
                 {t('register_here')}
