@@ -12,7 +12,10 @@ interface ErrorLabelProps {
 const ErrorLabel = ({ text, containerStyle, textStyle }: ErrorLabelProps) => {
   return (
     <Animated.View
-      style={[{ paddingTop: 6, marginBottom: 4 }, containerStyle]}
+      style={[
+        { paddingTop: 6, marginBottom: 4, marginLeft: 5 },
+        containerStyle,
+      ]}
       entering={FadeIn}>
       <AppText
         typeStyle="label-large"

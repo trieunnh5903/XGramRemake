@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
+  Alert,
   Image,
   Platform,
   StyleSheet,
@@ -9,11 +10,9 @@ import {
 import React, { useCallback } from 'react';
 import {
   AppButton,
-  AppGradientText,
   AppText,
   AppTextInput,
   Container,
-  ErrorLabel,
   Padding,
 } from '@/components';
 import { appStore } from '@/stores';
@@ -29,18 +28,14 @@ import { Colors } from '@/theme/colors';
 import { Observer, useLocalObservable } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
 import layout from '@/theme/layout';
-import Animated, {
-  FadeInLeft,
-  FadeInRight,
-  ZoomIn,
-} from 'react-native-reanimated';
+
 import { validateEmail, validatePassword } from '@/utils/validator';
 import { navigate } from '@/navigators/NavigationUtils';
 import { Images } from '@/assets/images';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const LoginScreen = () => {
-  const { t } = useTranslation('login');
+  const { t } = useTranslation('auth');
   const states = useLocalObservable(() => ({
     showPassword: false,
     password: 'trieunnh@gmail.com',
@@ -54,11 +49,6 @@ const LoginScreen = () => {
     setSaveLogin: (value: boolean) => (states.saveLogin = value),
     setErrorPassword: (value: string) => (states.errorPassword = value),
     setErrorEmail: (value: string) => (states.errorEmail = value),
-    isValid() {
-      return (
-        !this.errorEmail && !this.errorPassword && this.email && this.password
-      );
-    },
   }));
 
   const onEmailChange = useCallback((value: string) => {
@@ -73,7 +63,24 @@ const LoginScreen = () => {
 
   const onLoginPress = useCallback(() => {
     //Todo: Login
+    isValid();
   }, []);
+
+  const isValid = () => {
+    states.setErrorEmail(validateEmail(states.email));
+    states.setErrorPassword(validatePassword(states.password));
+    if (states.errorEmail) {
+      Alert.alert('', states.errorEmail);
+      return false;
+    }
+
+    if (states.errorPassword) {
+      Alert.alert('', states.errorPassword);
+      return false;
+    }
+
+    return true;
+  };
 
   const onLoginWithGooglePress = useCallback(async () => {
     try {
@@ -117,32 +124,9 @@ const LoginScreen = () => {
             <ChevronDownSvg size={12} />
           </View>
         </TouchableOpacity>
+        <Image style={styles.logo} source={Images.logo} />
 
-        <View style={[layout.itemsCenter, layout.flex_1]}>
-          <AppGradientText
-            style={styles.loginTitle}
-            colors={[Colors.kFF7A51, Colors.kFFDB5C]}>
-            {t('login_title')}
-          </AppGradientText>
-          <View style={[layout.row, layout.itemsCenter]}>
-            <Animated.View
-              style={styles.separatorLine}
-              entering={FadeInLeft.delay(1000)}
-            />
-            <Padding horizontal={12}>
-              <Animated.View
-                style={styles.separatorLineDot}
-                entering={ZoomIn.delay(1500)}
-              />
-            </Padding>
-            <Animated.View
-              style={styles.separatorLine}
-              entering={FadeInRight.delay(1000)}
-            />
-          </View>
-        </View>
-
-        <View style={{ padding: 16, marginTop: 30 }}>
+        <Padding padding={16}>
           <View style={styles.textField}>
             <Observer>
               {() => (
@@ -161,8 +145,8 @@ const LoginScreen = () => {
               <CircleCloseSvg size={18} />
             </TouchableOpacity>
           </View>
-          <Observer>{() => <ErrorLabel text={states.errorEmail} />}</Observer>
-          <View style={styles.textField}>
+          <Padding bottom={16} />
+          <View style={[styles.textField]}>
             <Observer>
               {() => (
                 <AppTextInput
@@ -189,10 +173,7 @@ const LoginScreen = () => {
               </Observer>
             </TouchableOpacity>
           </View>
-          <Observer>
-            {() => <ErrorLabel text={states.errorPassword} />}
-          </Observer>
-
+          <Padding bottom={16} />
           <TouchableOpacity
             onPress={() => navigate('RecoveryPassword')}
             style={[layout.selfEnd]}
@@ -207,7 +188,6 @@ const LoginScreen = () => {
           <Observer>
             {() => (
               <AppButton
-                disabled={!states.isValid}
                 disabledBackgroundColor={Colors.disabled}
                 radius={10}
                 text={t('signIn')}
@@ -271,14 +251,8 @@ const LoginScreen = () => {
             </AppText>
             <Image style={styles.icGoogle} source={Images.icGoogle} />
           </TouchableOpacity>
-
-          <View
-            style={[
-              layout.row,
-              layout.itemsCenter,
-              layout.justifyCenter,
-              { marginTop: 30 },
-            ]}>
+          <Padding bottom={30} />
+          <View style={[layout.row, layout.itemsCenter, layout.justifyCenter]}>
             <AppText typeStyle="label-large" color={Colors.placeholder}>
               {t('dont_have_account')}
             </AppText>
@@ -289,7 +263,7 @@ const LoginScreen = () => {
               </AppText>
             </TouchableOpacity>
           </View>
-        </View>
+        </Padding>
       </ScrollView>
       <Image source={Images.blueBlur} style={styles.blueBlur} />
     </Container>
@@ -313,6 +287,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+  },
+  logo: {
+    width: 76,
+    height: 76,
+    alignSelf: 'center',
   },
   icGoogle: {
     width: 24,

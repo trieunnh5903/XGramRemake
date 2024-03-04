@@ -21,6 +21,7 @@ export interface AppTextProps extends PropsWithChildren {
   style?: StyleProp<TextStyle>;
   color?: string;
   bold?: boolean;
+  textAlign?: 'auto' | 'left' | 'right' | 'center' | 'justify' | undefined;
 }
 const AppText: React.FC<AppTextProps> = ({
   typeStyle,
@@ -28,6 +29,7 @@ const AppText: React.FC<AppTextProps> = ({
   color = Colors.white90,
   bold,
   style,
+  textAlign,
 }) => {
   let labelStyle = {};
   switch (typeStyle) {
@@ -81,7 +83,12 @@ const AppText: React.FC<AppTextProps> = ({
   return (
     <Text
       style={[
-        { color: color, fontWeight: bold ? 'bold' : 'normal', ...labelStyle },
+        {
+          color: color,
+          fontWeight: bold ? 'bold' : 'normal',
+          textAlign: textAlign,
+          ...labelStyle,
+        },
         style,
       ]}>
       {children}

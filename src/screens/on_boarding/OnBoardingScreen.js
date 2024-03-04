@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
   },
 
   descriptionView: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 16,
     paddingTop: 30,
     justifyContent: 'center',
     alignItems: 'center',

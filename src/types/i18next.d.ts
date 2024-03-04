@@ -8,6 +8,7 @@ declare module 'i18next' {
       on_boarding: typeof en.on_boarding;
       login: typeof en.login;
       register: typeof en.register;
+      auth: typeof en.auth;
     };
   }
 }

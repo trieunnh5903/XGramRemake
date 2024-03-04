@@ -1,4 +1,6 @@
 export const Images = {
+  // logo
+  logo: require('./logo.png'),
   //Common
   english_flag: require('./common/english_flag.png'),
   vietnamese_flag: require('./common/vietnamese_flag.png'),
